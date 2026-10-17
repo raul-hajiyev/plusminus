@@ -27,10 +27,19 @@ const findRefreshToken = async (refreshToken) => {
     return data[0];
 }
 
+const me = async (userId) => {
+    const data = await db
+        .select({ id: users.id, email: users.email })
+        .from(users)
+        .where(eq(users.id, userId));
+    return data[0];
+}
+
 export default {
     findUserByEmail,
     register,
     saveRefreshToken,
     deleteRefreshToken,
-    findRefreshToken
+    findRefreshToken,
+    me
 };

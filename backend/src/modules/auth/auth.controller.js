@@ -30,8 +30,19 @@ const refresh = async (req, res) => {
     }
 }
 
+const me = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const data = await authService.me(userId);
+        return res.status(200).json({ success: true, data: data });
+    } catch (e) {
+        return res.status(400).json({ success: false, message: e.message });
+    }
+}
+
 export default {
     register,
     login,
-    refresh
+    refresh,
+    me
 }

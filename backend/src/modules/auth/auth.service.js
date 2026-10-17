@@ -65,8 +65,17 @@ const refresh = async (refreshToken) => {
     }
 }
 
+const me = async (userId) => {
+    const user = await authRepository.me(userId);
+    return {
+        id: user.id,
+        email: user.email
+    }
+}
+
 export default {
     register,
     login,
-    refresh
+    refresh,
+    me
 }
